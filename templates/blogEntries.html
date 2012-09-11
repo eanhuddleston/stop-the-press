@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Stop The Press!</title>
+  <link type="text/css" rel="stylesheet" href="/static/blog.css" />
+<head>
+
+<body>
+  <a href="/" class="main-title">
+      Stop The Press!
+  </a>
+  
+  <div class="top-right-bar">
+    {{user}}(<a href="{{action}}">{{action}}</a>) &nbsp; <a href="signup">{{signup}}</a> 
+  </div>
+  
+  <div id="content">
+  
+    {% for entry in entries %}
+    <div class="entry">
+      <div class="entry-heading">
+        <table class ="heading-table">
+          <tr>
+            <td>
+              <div class="entry-subject">
+                <a href='/{{entry.key().id()}}'>{{entry.subject}}</a>
+              </div>
+            </td>
+            <td>
+              <div class="delete-link">
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{deleteLink}}">{{deleteText}}</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div class="entry-date">
+          {{entry.created.strftime("%b %d, %Y")}}
+        </div>
+      </div>
+    
+      <pre class="entry-content">{{entry.content}}</pre>
+      
+    </div>
+    {% endfor %}
+  
+  </div>
+  
+  <div class="newpost-link">
+    <a href="newpost">New post</a> 
+  </div>
+  
+  <div class="json-link">
+    <a href=".json">JSON</a>
+  </div>
+  
+  <div class="deltaTime">
+    {{cacheMessage}}
+  </div>
+      
+</body>
+</html>
